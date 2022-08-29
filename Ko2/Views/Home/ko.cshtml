@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KO</title>
+     <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"
+            type="text/javascript"></script>
+</head>
+<body>
+
+    <h1>Account details</h1><br>
+
+    <table>
+        <tr >ID: <span data-bind="text:ID"/>"</tr>
+        <br />
+        <tr>Name: <span data-bind="text:Name"/></tr>
+        <br />
+        <tr>Balance: <span data-bind="text:balance"/></tr>
+        <br />
+        <br />
+
+          <hr>
+
+          <input type="number" name="updateBalance" data-bind="value:balance">
+    </table>
+
+  
+
+
+    
+    <script>
+        function Account(id,name,balance){
+            this.ID = id;
+            this.Name = name;
+            this.balance = balance;
+
+        }
+
+        @*here we are only changing the balance by using inheritance*@
+
+        function AccountViewmodel(Account){
+            this.ID = Account.ID;
+            this.Name = Account.Name;
+            this.balance = ko.observable(Account.balance);
+        }
+
+
+        @* passing our view model*@
+
+        ko.applyBindings(new AccountViewmodel(new Account(153,"Neeraj",100000)));
+    </script>
+</body>
+</html>
